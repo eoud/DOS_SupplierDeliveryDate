@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Messages for Supplier Delivery Date</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>&amp;1&amp;2&amp;3&amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>&amp;1 &amp;2 does not exist. Please check your entry.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Please check application &apos;Maintain vendor holiday calendar&apos;.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Holiday start date may not be later than holiday end date.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Product and ProductGroup may not be filled in at the same time.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Supplier</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Plant</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Product</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>ProductGroup</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>The selected Product does not exist for the selected Plant.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Plant must be provided</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Plant &amp;1 does not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Material must be provided</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>Material &amp;1 does not exist</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

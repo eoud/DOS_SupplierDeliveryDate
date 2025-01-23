@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintain Supplier Delivery Days",
+    "originalLanguage": "en"
+  },
+  "serviceConfiguration": {
+    "serviceBinding": "ZDOS_UI_SUPDLVDAYS_O4",
+    "serviceName": "ZDOS_UI_SUPDLVDAYS_O4",
+    "serviceVersion": "0001",
+    "rootEntitySet": "SupplierDlvDaysAll",
+    "name": "Supplier Delivery Days",
+    "configurationGroup": "ZDOS_SUPPL_CBC_GROUP_PURCH",
+    "skipRootEntity": true
+  },
+  "appConfiguration": {
+    "listReport": {},
+    "objectPages": [
+      {
+        "entitySet": "SupplierDlvDaysAll",
+        "variantManagement": "control"
+      }
+    ],
+    "tableSettings": [
+      {
+        "entitySet": "SupplierDlvDays",
+        "rowCountMode": "auto"
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+define service ZDOS_UI_SUPDLVDAYS {
+  expose ZDOS_C_SUPDLVDAYS_S as SupplierDlvDaysAll;
+  expose ZDOS_C_SUPDLVDAYS as SupplierDlvDays;
+}

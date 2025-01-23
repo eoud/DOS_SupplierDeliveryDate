@@ -1,0 +1,25 @@
+projection;
+strict;
+use draft;
+
+define behavior for ZDOS_C_SupDlvDays_S alias SupplierDlvDaysAll
+
+{
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+//  use action SelectCustomizingTransptReq;
+
+  use association _SupplierDlvDays { create; with draft; }
+}
+
+define behavior for ZDOS_C_SupDlvDays alias SupplierDlvDays
+
+{
+  use update;
+  use delete;
+
+  use association _SupplierDlvDaysAll { with draft; }
+}

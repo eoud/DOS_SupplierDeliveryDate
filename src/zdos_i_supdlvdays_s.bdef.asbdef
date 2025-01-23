@@ -1,0 +1,95 @@
+managed implementation in class ZDOS_BP_I_SUPDLVDAYS_S unique;
+strict;
+with draft;
+
+define behavior for ZDOS_I_SupDlvDays_S alias SupplierDlvDaysAll
+draft table zdos_supdlvd_d_s
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master ( global )
+
+{
+  field ( readonly )
+  SingletonID;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare
+  { validation SupplierDlvDays~validateSupplier;
+    validation SupplierDlvDays~ValidatePlant;
+    validation SupplierDlvDays~validateMaterialGroup;
+    validation SupplierDlvDays~validateMaterial;
+    validation SupplierDlvDays~validatePlantMaterial;
+    validation SupplierDlvDays~validateMatGrMaterial;
+    validation SupplierDlvDays~validateHolidayDates; }
+
+  association _SupplierDlvDays { create ( features : instance ); with draft; }
+}
+
+define behavior for ZDOS_I_SupDlvDays alias SupplierDlvDays
+persistent table zdos_supdlvdays
+draft table zdos_supdlvday_d
+etag master LocalLastChangedAt
+lock dependent by _SupplierDlvDaysAll
+authorization dependent by _SupplierDlvDaysAll
+
+{
+  field ( readonly )
+  SingletonID,
+  SupplDlvDaysUUID,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  LastChangedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt;
+
+  field ( numbering : managed )
+  SupplDlvDaysUuid;
+
+
+  update ( features : global );
+  delete ( features : global );
+
+  validation validateSupplier on save { field Supplier; create; }
+  validation validatePlant on save { field Plant; create; }
+  validation validateMaterialGroup on save { field MaterialGroup; create; }
+  validation validateMaterial on save { field Material; create; }
+  validation validatePlantMaterial on save { field Plant, Material; create; }
+  validation validateMatGrMaterial on save { field MaterialGroup, Material; create; }
+  validation validateHolidayDates on save { field HolidayStart, HolidayEnd; create; }
+
+  mapping for zdos_supdlvdays
+    {
+      SupplDlvDaysUUID   = SUPPL_DLV_DAYS_UUID;
+      Supplier           = SUPPLIER;
+      Plant              = PLANT;
+      MaterialGroup      = MATERIAL_GROUP;
+      Material           = MATERIAL;
+      Monday             = MONDAY;
+      Tuesday            = TUESDAY;
+      Wednesday          = WEDNESDAY;
+      Thursday           = THURSDAY;
+      Friday             = FRIDAY;
+      Saturday           = SATURDAY;
+      Sunday             = SUNDAY;
+      HolidayStart       = HOLIDAY_START;
+      HolidayEnd         = HOLIDAY_END;
+      SchedulingType     = SCHEDULING_TYPE;
+      CreatedBy          = CREATED_BY;
+      CreatedAt          = CREATED_AT;
+      LastChangedBy      = LAST_CHANGED_BY;
+      LastChangedAt      = LAST_CHANGED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    }
+
+  association _SupplierDlvDaysAll { with draft; }
+}

@@ -1,0 +1,5 @@
+@MappingRole: true
+define role ZDOS_C_SupDlvDays {
+  grant select on ZDOS_C_SupDlvDays
+  where INHERITING CONDITIONS FROM ENTITY ZDOS_I_SupDlvDays;
+}
