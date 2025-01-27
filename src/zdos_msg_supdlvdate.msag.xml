@@ -66,7 +66,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
      <MSGNR>009</MSGNR>
-     <TEXT>The selected Product does not exist for the selected Plant.</TEXT>
+     <TEXT>The Material &amp;1 does not exist in Plant &amp;2</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -91,6 +91,30 @@
      <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
      <MSGNR>013</MSGNR>
      <TEXT>Material &amp;1 does not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>Supplier must be provided</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>Supplier &amp;1 does not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>Material Group &amp;1 does not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>At least one day must be marked as delivery day</TEXT>
     </T100>
    </T100>
   </asx:values>

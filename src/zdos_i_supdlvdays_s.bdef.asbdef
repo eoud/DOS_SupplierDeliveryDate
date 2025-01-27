@@ -28,7 +28,8 @@ authorization master ( global )
     validation SupplierDlvDays~validateMaterial;
     validation SupplierDlvDays~validatePlantMaterial;
     validation SupplierDlvDays~validateMatGrMaterial;
-    validation SupplierDlvDays~validateHolidayDates; }
+    validation SupplierDlvDays~validateHolidayDates;
+    validation SupplierDlvDays~validateDeliveryDays; }
 
   association _SupplierDlvDays { create ( features : instance ); with draft; }
 }
@@ -65,6 +66,7 @@ authorization dependent by _SupplierDlvDaysAll
   validation validatePlantMaterial on save { field Plant, Material; create; }
   validation validateMatGrMaterial on save { field MaterialGroup, Material; create; }
   validation validateHolidayDates on save { field HolidayStart, HolidayEnd; create; }
+  validation validateDeliveryDays on save { field Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday; create; }
 
   mapping for zdos_supdlvdays
     {
