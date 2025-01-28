@@ -167,7 +167,8 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       INTO TABLE @DATA(existing_products).
 
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
-      IF line_exists( existing_products[ Product = <entity>-material ] ). "#EC CI_STDSEQ
+      IF    line_exists( existing_products[ Product = <entity>-material ] ) "#EC CI_STDSEQ
+         OR <entity>-material IS INITIAL.
         CONTINUE.
       ENDIF.
 
@@ -213,13 +214,14 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       INTO TABLE @DATA(existing_product_groups).
 
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
+      IF    line_exists( existing_product_groups[ ProductGroup = <entity>-MaterialGroup ] ) "#EC CI_STDSEQ
+         OR <entity>-MaterialGroup IS INITIAL.
+        CONTINUE.
+      ENDIF.
+
       APPEND VALUE #( %tky        = <entity>-%tky
                       %state_area = state_area_mat_group )
              TO reported-supplierdlvdays.
-
-      IF line_exists( existing_product_groups[ ProductGroup = <entity>-MaterialGroup ] ). "#EC CI_STDSEQ
-        CONTINUE.
-      ENDIF.
 
       APPEND VALUE #( %tky = <entity>-%tky ) TO failed-supplierdlvdays.
       APPEND VALUE #( %tky                     = <entity>-%tky
@@ -294,13 +296,14 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       INTO TABLE @DATA(existing_plants).
 
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
+      IF    line_exists( existing_plants[ plant = <entity>-plant ] ) "#EC CI_STDSEQ
+         OR <entity>-plant IS INITIAL.
+        CONTINUE.
+      ENDIF.
+
       APPEND VALUE #( %tky        = <entity>-%tky
                       %state_area = state_area_plant )
              TO reported-supplierdlvdays.
-
-      IF line_exists( existing_plants[ plant = <entity>-plant ] ). "#EC CI_STDSEQ
-        CONTINUE.
-      ENDIF.
 
       APPEND VALUE #( %tky = <entity>-%tky ) TO failed-supplierdlvdays.
       APPEND VALUE #( %tky                     = <entity>-%tky
@@ -343,8 +346,10 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       INTO TABLE @DATA(existing_products).
 
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
-      IF line_exists( existing_products[ Product = <entity>-material
-                                         Plant   = <entity>-plant ] ). "#EC CI_STDSEQ
+      IF    line_exists( existing_products[ Product = <entity>-material
+                                            Plant   = <entity>-plant ] ) "#EC CI_STDSEQ
+         OR <entity>-material IS INITIAL
+         OR <entity>-plant    IS INITIAL.
         CONTINUE.
       ENDIF.
 

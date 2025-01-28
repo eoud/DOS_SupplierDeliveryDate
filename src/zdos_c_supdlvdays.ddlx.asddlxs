@@ -1,8 +1,8 @@
 @Metadata.layer: #CUSTOMER
 
-@UI.headerInfo: { typeName: 'SupplierDlvDays',
-                  typeNamePlural: 'SupplierDlvDayss',
-                  title: { type: #STANDARD, label: 'Supplier Delivery Days', value: 'Supplier' } }
+@UI.headerInfo: { typeName: 'Supplier',
+                  typeNamePlural: 'Suppliers',
+                  title: { type: #STANDARD, label: 'Delivery Days Supplier', value: 'Supplier' } }
 
 annotate view ZDOS_C_SupDlvDays with
 
@@ -80,23 +80,23 @@ annotate view ZDOS_C_SupDlvDays with
   Thursday;
 
   @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 50 } ]
-  @UI.identification: [ { position: 10 } ]
+  @UI.lineItem: [ { position: 110 } ]
   Friday;
 
   @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 60 } ]
-  @UI.identification: [ { position: 11 } ]
+  @UI.lineItem: [ { position: 120 } ]
   Saturday;
 
   @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 70 } ]
-  @UI.identification: [ { position: 12 } ]
+  @UI.lineItem: [ { position: 130 } ]
   Sunday;
 
   @UI.fieldGroup: [ { qualifier: 'Holidays', position: 10 } ]
-  @UI.identification: [ { position: 13 } ]
+  @UI.lineItem: [ { position: 140 } ]
   HolidayStart;
 
   @UI.fieldGroup: [ { qualifier: 'Holidays', position: 20 } ]
-  @UI.identification: [ { position: 14 } ]
+  @UI.lineItem: [ { position: 150 } ]
   HolidayEnd;
 
   @UI.fieldGroup: [ { qualifier: 'AdminData', position: 10 } ]
