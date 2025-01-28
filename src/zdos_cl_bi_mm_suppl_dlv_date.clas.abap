@@ -26,7 +26,7 @@ CLASS zdos_cl_bi_mm_suppl_dlv_date IMPLEMENTATION.
                               fixed_supplier            = purchaserequisitionitem-fixedsupplier
                               purchasing_organization   = purchaserequisitionitem-purchasingorganization
                               planned_delivery_days     = purchaserequisitionitem-materialplanneddeliverydurn
-                              zz_supplier_delivery_date = purchaserequisitionitem-zzdos_suppl_dlv_date_pri ).
+                              zz_supplier_delivery_date = purchaserequisitionitem-zzdos_suppldlvdate_pri ).
 
       IF     pur_req_item-delivery_date  IS NOT INITIAL
          AND pur_req_item-plant          IS NOT INITIAL
@@ -35,8 +35,8 @@ CLASS zdos_cl_bi_mm_suppl_dlv_date IMPLEMENTATION.
 
         supplier_dlv_date->determine_delivery_date( CHANGING cs_item = pur_req_item ).
 
-        IF purchaserequisitionitem-zzdos_suppl_dlv_date_pri <> pur_req_item-zz_supplier_delivery_date.
-          purchaserequisitionitemchange-zzdos_suppl_dlv_date_pri = pur_req_item-zz_supplier_delivery_date.
+        IF purchaserequisitionitem-zzdos_suppldlvdate_pri <> pur_req_item-zz_supplier_delivery_date.
+          purchaserequisitionitemchange-zzdos_suppldlvdate_pri = pur_req_item-zz_supplier_delivery_date.
         ENDIF.
 
         IF purchaserequisitionitem-deliverydate <> pur_req_item-delivery_date.
@@ -52,7 +52,7 @@ CLASS zdos_cl_bi_mm_suppl_dlv_date IMPLEMENTATION.
                               fixed_supplier            = purchaserequisitionitem-supplier
                               purchasing_organization   = purchaserequisitionitem-purchasingorganization
                               planned_delivery_days     = purchaserequisitionitem-materialplanneddeliverydurn
-                              zz_supplier_delivery_date = purchaserequisitionitem-zzdos_suppl_dlv_date_pri ).
+                              zz_supplier_delivery_date = purchaserequisitionitem-zzdos_suppldlvdate_pri ).
 
       IF     pur_req_item-delivery_date IS NOT INITIAL
          AND pur_req_item-plant         IS NOT INITIAL
@@ -60,8 +60,8 @@ CLASS zdos_cl_bi_mm_suppl_dlv_date IMPLEMENTATION.
 
         supplier_dlv_date->determine_delivery_date( CHANGING cs_item = pur_req_item ).
 
-        IF purchaserequisitionitem-zzdos_suppl_dlv_date_pri <> pur_req_item-zz_supplier_delivery_date.
-          purchaserequisitionitemchange-zzdos_suppl_dlv_date_pri = pur_req_item-zz_supplier_delivery_date.
+        IF purchaserequisitionitem-zzdos_suppldlvdate_pri <> pur_req_item-zz_supplier_delivery_date.
+          purchaserequisitionitemchange-zzdos_suppldlvdate_pri = pur_req_item-zz_supplier_delivery_date.
         ENDIF.
 
         IF purchaserequisitionitem-deliverydate <> pur_req_item-delivery_date.
