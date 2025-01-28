@@ -1,146 +1,113 @@
 @Metadata.layer: #CUSTOMER
-@UI: {
-  headerInfo: {
-    typeName: 'SupplierDlvDays', 
-    typeNamePlural: 'SupplierDlvDayss', 
-    title: {
-      type: #STANDARD, 
-      label: 'Supplier Delivery Days', 
-      value: 'SupplDlvDaysUuid'
-    }
-  }
-}
+
+@UI.headerInfo: { typeName: 'SupplierDlvDays',
+                  typeNamePlural: 'SupplierDlvDayss',
+                  title: { type: #STANDARD, label: 'Supplier Delivery Days', value: 'Supplier' } }
+
 annotate view ZDOS_C_SupDlvDays with
+
 {
-  @UI.identification: [ {
-    position: 1 
-  } ]
-  @UI.lineItem: [ {
-    position: 1 
-  } ]
-  @UI.facet: [ {
-    id: 'ZDOS_I_SupDlvDays', 
-    purpose: #STANDARD, 
-    type: #IDENTIFICATION_REFERENCE, 
-    label: 'Supplier Delivery Days', 
-    position: 1 
-  } ]
-  SupplDlvDaysUuid;
-  
-  @UI.identification: [ {
-    position: 2 
-  } ]
-  @UI.lineItem: [ {
-    position: 2 
-  } ]
+  @UI.facet: [ { id: 'ZDOS_I_SupDlvDays',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Supplier Delivery Days',
+                 position: 10 },
+               { id: 'DeliveryDays',
+                 targetQualifier: 'DeliveryDays',
+                 purpose: #STANDARD,
+                 type: #FIELDGROUP_REFERENCE,
+                 label: 'Delivery Days',
+                 position: 20 },
+               { id: 'Holidays',
+                 targetQualifier: 'Holidays',
+                 purpose: #STANDARD,
+                 type: #FIELDGROUP_REFERENCE,
+                 label: 'Holidays',
+                 position: 30 },
+               { id: 'AdminData',
+                 targetQualifier: 'AdminData',
+                 purpose: #STANDARD,
+                 type: #FIELDGROUP_REFERENCE,
+                 label: 'Administrative Data',
+                 position: 100 } ]
+  @UI.hidden: true
+  SupplDlvDaysUUID;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'I_Supplier_VH', element: 'Supplier' } } ]
+  @UI.identification: [ { position: 20 } ]
+  @UI.lineItem: [ { position: 20 } ]
+  @UI.selectionField: [ { position: 20 } ]
   Supplier;
-  
-  @UI.identification: [ {
-    position: 3 
-  } ]
-  @UI.lineItem: [ {
-    position: 3 
-  } ]
-  Plant;
-  
-  @UI.identification: [ {
-    position: 4 
-  } ]
-  @UI.lineItem: [ {
-    position: 4 
-  } ]
-  MaterialGroup;
-  
-  @UI.identification: [ {
-    position: 5 
-  } ]
-  @UI.lineItem: [ {
-    position: 5 
-  } ]
-  Material;
-  
-  @UI.identification: [ {
-    position: 6 
-  } ]
-  @UI.lineItem: [ {
-    position: 6 
-  } ]
-  Monday;
-  
-  @UI.identification: [ {
-    position: 7 
-  } ]
-  @UI.lineItem: [ {
-    position: 7 
-  } ]
-  Tuesday;
-  
-  @UI.identification: [ {
-    position: 8 
-  } ]
-  @UI.lineItem: [ {
-    position: 8 
-  } ]
-  Wednesday;
-  
-  @UI.identification: [ {
-    position: 9 
-  } ]
-  @UI.lineItem: [ {
-    position: 9 
-  } ]
-  Thursday;
-  
-  @UI.identification: [ {
-    position: 10 
-  } ]
-  @UI.lineItem: [ {
-    position: 10 
-  } ]
-  Friday;
-  
-  @UI.identification: [ {
-    position: 11 
-  } ]
-  Saturday;
-  
-  @UI.identification: [ {
-    position: 12 
-  } ]
-  Sunday;
-  
-  @UI.identification: [ {
-    position: 13 
-  } ]
-  HolidayStart;
-  
-  @UI.identification: [ {
-    position: 14 
-  } ]
-  HolidayEnd;
-  
-  @UI.identification: [ {
-    position: 15 
-  } ]
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'ZDOS_I_SchedulingTypeVH', element: 'SchedulingType' } } ]
+  @UI.identification: [ { position: 30 } ]
+  @UI.lineItem: [ { position: 30 } ]
   SchedulingType;
-  
-  @UI.identification: [ {
-    position: 16 
-  } ]
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'I_PlantStdVH', element: 'Plant' } } ]
+  @UI.identification: [ { position: 40 } ]
+  @UI.lineItem: [ { position: 40 } ]
+  @UI.selectionField: [ { position: 40 } ]
+  Plant;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'ZDOS_I_ProductGroupVH', element: 'ProductGroup' } } ]
+  @UI.identification: [ { position: 50 } ]
+  @UI.lineItem: [ { position: 50 } ]
+  @UI.selectionField: [ { position: 50 } ]
+  MaterialGroup;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: 'ZDOS_I_ProductPlantVH', element: 'Product' },
+                                        additionalBinding: [ { element: 'Plant', localElement: 'Plant' } ] } ]
+  @UI.identification: [ { position: 60 } ]
+  @UI.lineItem: [ { position: 60 } ]
+  @UI.selectionField: [ { position: 60 } ]
+  Material;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 10 } ]
+  @UI.lineItem: [ { position: 70 } ]
+  Monday;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 20 } ]
+  @UI.lineItem: [ { position: 80 } ]
+  Tuesday;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 30 } ]
+  @UI.lineItem: [ { position: 90 } ]
+  Wednesday;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 40 } ]
+  @UI.lineItem: [ { position: 100 } ]
+  Thursday;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 50 } ]
+  @UI.identification: [ { position: 10 } ]
+  Friday;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 60 } ]
+  @UI.identification: [ { position: 11 } ]
+  Saturday;
+
+  @UI.fieldGroup: [ { qualifier: 'DeliveryDays', position: 70 } ]
+  @UI.identification: [ { position: 12 } ]
+  Sunday;
+
+  @UI.fieldGroup: [ { qualifier: 'Holidays', position: 10 } ]
+  @UI.identification: [ { position: 13 } ]
+  HolidayStart;
+
+  @UI.fieldGroup: [ { qualifier: 'Holidays', position: 20 } ]
+  @UI.identification: [ { position: 14 } ]
+  HolidayEnd;
+
+  @UI.fieldGroup: [ { qualifier: 'AdminData', position: 10 } ]
   CreatedBy;
-  
-  @UI.identification: [ {
-    position: 17 
-  } ]
+
+  @UI.fieldGroup: [ { qualifier: 'AdminData', position: 20 } ]
   CreatedAt;
-  
-  @UI.identification: [ {
-    position: 18 
-  } ]
+
+  @UI.fieldGroup: [ { qualifier: 'AdminData', position: 30 } ]
   LastChangedBy;
-  
-  @UI.identification: [ {
-    position: 19 
-  } ]
+
+  @UI.fieldGroup: [ { qualifier: 'AdminData', position: 40 } ]
   LastChangedAt;
 }

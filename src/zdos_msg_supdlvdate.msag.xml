@@ -116,6 +116,18 @@
      <MSGNR>017</MSGNR>
      <TEXT>At least one day must be marked as delivery day</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>018</MSGNR>
+     <TEXT>Scheduling Type must be provided</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <MSGNR>019</MSGNR>
+     <TEXT>Scheduling Type &amp;1 does not exist, or is not allowed</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

@@ -22,8 +22,4 @@ annotate view ZDOS_C_SupDlvDays_S with
 
   @UI.hidden: true
   HideTransport;
-
-//  @UI.identification: [ { position: 2, importance: #HIGH },
-//                        { type: #FOR_ACTION, dataAction: 'SelectCustomizingTransptReq', label: 'Select Transport' } ]
-//  TransportRequestID;
 }

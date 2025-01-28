@@ -44,13 +44,13 @@ CLASS zdos_cl_supplier_dlv_date DEFINITION
     METHODS check_customer_holiday
       IMPORTING i_dlv_days_supplier TYPE ZDOS_I_SupplierDeliveryDays
                 i_factory_calendar  TYPE i_plant-FactoryCalendar
-      CHANGING  c_check_date        TYPE sy-datum.
+      CHANGING  c_check_date        TYPE datum.
 
     METHODS check_delivery_date_samplmeqr
       IMPORTING i_plant                 TYPE i_plant-Plant
                 i_factory_calendar      TYPE i_plant-FactoryCalendar
                 i_planned_delivery_days TYPE plifz
-      CHANGING  c_check_date            TYPE sy-datum.
+      CHANGING  c_check_date            TYPE datum.
 
     METHODS create_warning_message.
 
@@ -60,8 +60,8 @@ CLASS zdos_cl_supplier_dlv_date DEFINITION
 
     METHODS is_delivery_day_allowed
       CHANGING cs_item                  TYPE zdos_cl_supplier_dlv_date=>ty_status_pur_req_item
-               c_delivery_check_date    TYPE sy-datum
-               c_supplier_delivery_days TYPE zdos_cl_supplier_dlv_date=>ty_supdlvdays_helper_type.
+               c_delivery_check_date    TYPE datum
+               c_delivery_days_supplier TYPE zdos_cl_supplier_dlv_date=>ty_supdlvdays_helper_type.
 
 ENDCLASS.
 
@@ -69,7 +69,7 @@ ENDCLASS.
 
 CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
   METHOD determine_delivery_date.
-    DATA delivery_check_date      TYPE sy-datum.
+    DATA delivery_check_date      TYPE datum.
     DATA planned_dlv_time_in_days TYPE plifz.
 
     IF NOT (    cs_item-zz_supplier_delivery_date IS INITIAL
@@ -133,7 +133,7 @@ CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
 
       is_delivery_day_allowed( CHANGING cs_item                  = cs_item
                                         c_delivery_check_date    = delivery_check_date
-                                        c_supplier_delivery_days = supplier_delivery_days ).
+                                        c_delivery_days_supplier = supplier_delivery_days ).
     ENDIF.
 
     " Check if customer has holiday. If yes, consider the holiday then proceed with the
@@ -150,30 +150,38 @@ CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
 
 
   METHOD is_delivery_day_allowed.
-    DATA day_number              TYPE zdos_suppl_day_number.
     DATA temporary_delivery_date TYPE datum.
 
-    TRY.
-        cl_scal_api=>day_attributes_get( EXPORTING iv_factory_calendar = ' '
-                                                   iv_holiday_calendar = ' '
-                                                   iv_date_from        = c_delivery_check_date
-                                                   iv_date_to          = c_delivery_check_date
-                                                   iv_language         = 'E'
-                                         IMPORTING et_day_attributes   = DATA(days_attributes) ).
-      CATCH cx_scal.
-        RETURN.
-    ENDTRY.
+*    TRY.
+*        cl_scal_api=>day_attributes_get( EXPORTING iv_factory_calendar = ' '
+*                                                   iv_holiday_calendar = ' '
+*                                                   iv_date_from        = c_delivery_check_date
+*                                                   iv_date_to          = c_delivery_check_date
+*                                                   iv_language         = 'E'
+*                                         IMPORTING et_day_attributes   = DATA(days_attributes) ).
+*      CATCH cx_scal.
+*        RETURN.
+*    ENDTRY.
+
+*    day_number = VALUE #( days_attributes[ 1 ]-weekday OPTIONAL ).
+
+    SELECT SINGLE FROM I_CalendarDate
+      FIELDS WeekDay
+      WHERE CalendarDate = @c_delivery_check_date
+      INTO @DATA(day_number).
+
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     " Delivery date should always be at least today + 1 day
     FINAL(earliest_allowed_delivery_date) = cl_abap_context_info=>get_system_date( ) + 1.
-
-    day_number = VALUE #( days_attributes[ 1 ]-weekday OPTIONAL ).
 
     " Check if the day of the delivery date is based on the days
     " specified in custom supplier delivery days-table.
     " If yes then take the date, else take the next possible date
     " based on the day specified in the table
-    DATA(range_dlv_day_numbers) = build_range_dlv_day_numbers( c_supplier_delivery_days ).
+    DATA(range_dlv_day_numbers) = build_range_dlv_day_numbers( c_delivery_days_supplier ).
 
     " First delivery date is compatible with delivery day of factory calendar
     IF day_number IN range_dlv_day_numbers.
@@ -189,49 +197,49 @@ CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
         CASE day_number.
           WHEN 1.
             " Compare potential delivery day after end of holidays
-            IF c_supplier_delivery_days-monday IS NOT INITIAL.
+            IF c_delivery_days_supplier-monday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
 
           WHEN 2.
-            IF c_supplier_delivery_days-tuesday IS NOT INITIAL.
+            IF c_delivery_days_supplier-tuesday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
 
           WHEN 3.
-            IF c_supplier_delivery_days-wednesday IS NOT INITIAL.
+            IF c_delivery_days_supplier-wednesday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
           WHEN 4.
-            IF c_supplier_delivery_days-thursday IS NOT INITIAL.
+            IF c_delivery_days_supplier-thursday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
           WHEN 5.
-            IF c_supplier_delivery_days-friday IS NOT INITIAL.
+            IF c_delivery_days_supplier-friday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
           WHEN 6.
-            IF c_supplier_delivery_days-saturday IS NOT INITIAL.
+            IF c_delivery_days_supplier-saturday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
           WHEN 7.
-            IF c_supplier_delivery_days-sunday IS NOT INITIAL.
+            IF c_delivery_days_supplier-sunday IS NOT INITIAL.
               c_delivery_check_date = temporary_delivery_date.
               EXIT.
             ENDIF.
         ENDCASE.
 
         " Backward scheduling to go backward compared to initial delivery date
-        IF c_supplier_delivery_days-schedulingtype = zdos_cl_supplier_dlv_date=>backward_scheduling.
+        IF c_delivery_days_supplier-schedulingtype = zdos_cl_supplier_dlv_date=>backward_scheduling.
           IF cs_item-delivery_date < earliest_allowed_delivery_date.
             " Change scheduling type as you can't deliver in the past (in our case before today + 1d)
-            c_supplier_delivery_days-schedulingtype = zdos_cl_supplier_dlv_date=>forward_scheduling.
+            c_delivery_days_supplier-schedulingtype = zdos_cl_supplier_dlv_date=>forward_scheduling.
             temporary_delivery_date += 1.
             day_number += 1.
           ELSE.
@@ -241,7 +249,7 @@ CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
         ENDIF.
 
         " Forward scheduling to go forward in the future compared to initial delivery date
-        IF c_supplier_delivery_days-schedulingtype = zdos_cl_supplier_dlv_date=>forward_scheduling.
+        IF c_delivery_days_supplier-schedulingtype = zdos_cl_supplier_dlv_date=>forward_scheduling.
           temporary_delivery_date += 1.
           day_number += 1.
         ENDIF.
@@ -345,8 +353,8 @@ CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
 
 
   METHOD check_customer_holiday.
-    DATA weekday_number           TYPE cl_scal_api=>scalv_weekday_number.
-    DATA temporary_check_date     TYPE cl_scal_api=>scalv_date.
+    DATA weekday_number           TYPE I_CalendarDate-WeekDay.
+    DATA temporary_check_date     TYPE datum.
     DATA is_compatible_check_date TYPE abap_boolean.
 
     " Delivery date should always be at least today + 1 day
@@ -381,8 +389,10 @@ CLASS zdos_cl_supplier_dlv_date IMPLEMENTATION.
           weekday_number += 1.
       ENDCASE.
 
-      cl_scal_api=>date_compute_day( EXPORTING iv_date           = temporary_check_date
-                                     IMPORTING ev_weekday_number = weekday_number ).
+      SELECT SINGLE FROM I_CalendarDate "#EC CI_SEL_NESTED
+        FIELDS WeekDay
+        WHERE CalendarDate = @temporary_check_date
+        INTO @weekday_number.
 
       " Compare potential delivery day after end of holidays
       IF i_dlv_days_supplier-monday IS NOT INITIAL AND weekday_number = 1.

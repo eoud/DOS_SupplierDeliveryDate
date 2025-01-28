@@ -89,6 +89,8 @@ CLASS lhc_zdos_i_supdlvdays DEFINITION INHERITING FROM cl_abap_behavior_handler 
       IMPORTING keys FOR SupplierDlvDays~validateSupplier.
     METHODS validateDeliveryDays FOR VALIDATE ON SAVE
       IMPORTING keys FOR SupplierDlvDays~validateDeliveryDays.
+    METHODS validateSchedulingType FOR VALIDATE ON SAVE
+      IMPORTING keys FOR SupplierDlvDays~validateSchedulingType.
 ENDCLASS.
 
 
@@ -164,10 +166,6 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       ORDER BY PRIMARY KEY
       INTO TABLE @DATA(existing_products).
 
-    IF sy-subrc <> 0.
-      RETURN.
-    ENDIF.
-
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
       IF line_exists( existing_products[ Product = <entity>-material ] ). "#EC CI_STDSEQ
         CONTINUE.
@@ -213,10 +211,6 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       WHERE ProductGroup = @entities-MaterialGroup
       ORDER BY PRIMARY KEY
       INTO TABLE @DATA(existing_product_groups).
-
-    IF sy-subrc <> 0.
-      RETURN.
-    ENDIF.
 
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
       APPEND VALUE #( %tky        = <entity>-%tky
@@ -299,10 +293,6 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       ORDER BY PRIMARY KEY
       INTO TABLE @DATA(existing_plants).
 
-    IF sy-subrc <> 0.
-      RETURN.
-    ENDIF.
-
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
       APPEND VALUE #( %tky        = <entity>-%tky
                       %state_area = state_area_plant )
@@ -352,10 +342,6 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       ORDER BY PRIMARY KEY
       INTO TABLE @DATA(existing_products).
 
-    IF sy-subrc <> 0.
-      RETURN.
-    ENDIF.
-
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
       IF line_exists( existing_products[ Product = <entity>-material
                                          Plant   = <entity>-plant ] ). "#EC CI_STDSEQ
@@ -404,10 +390,6 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
       WHERE Supplier = @entities-Supplier
       ORDER BY PRIMARY KEY
       INTO TABLE @DATA(existing_suppliers).
-
-    IF sy-subrc <> 0.
-      RETURN.
-    ENDIF.
 
     LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
       APPEND VALUE #( %tky        = <entity>-%tky
@@ -489,6 +471,63 @@ CLASS lhc_zdos_i_supdlvdays IMPLEMENTATION.
                                                  number   = '017'
                                                  severity = if_abap_behv_message=>severity-error ) )
              TO reported-supplierdlvdays.
+    ENDLOOP.
+  ENDMETHOD.
+
+
+  METHOD validateSchedulingType.
+    CONSTANTS state_area_sched_type TYPE symsgid VALUE 'VALIDATE_SCHED_TYPE' ##NO_TEXT.
+
+    READ ENTITIES OF ZDOS_I_SupDlvDays_S IN LOCAL MODE
+         ENTITY SupplierDlvDays
+         FIELDS ( singletonid
+                  SupplDlvDaysUUID
+                  SchedulingType )
+         WITH CORRESPONDING #( keys )
+         RESULT DATA(entities).
+
+    IF entities IS INITIAL.
+      RETURN.
+    ENDIF.
+
+    SELECT FROM ZDOS_I_SchedulingTypeVH
+      FIELDS SchedulingType
+      FOR ALL ENTRIES IN @entities
+      WHERE SchedulingType = @entities-SchedulingType
+      ORDER BY PRIMARY KEY
+      INTO TABLE @DATA(allowed_scheduling_types).
+
+    LOOP AT entities ASSIGNING FIELD-SYMBOL(<entity>).
+      APPEND VALUE #( %tky        = <entity>-%tky
+                      %state_area = state_area_sched_type )
+             TO reported-supplierdlvdays.
+
+      IF <entity>-Supplier IS INITIAL.
+        APPEND VALUE #( %tky = <entity>-%tky ) TO failed-supplierdlvdays.
+        APPEND VALUE #( %tky                     = <entity>-%tky
+                        %msg                     = new_message( id       = lhc_zdos_i_supdlvdays=>custom_message_class
+                                                                number   = '018'
+                                                                severity = if_abap_behv_message=>severity-error )
+                        %element-SchedulingType  = if_abap_behv=>mk-on
+                        %state_area              = state_area_sched_type
+                        %path-supplierdlvdaysall = CORRESPONDING #( <entity> ) )
+               TO reported-supplierdlvdays.
+        CONTINUE.
+      ENDIF.
+
+      IF NOT line_exists( allowed_scheduling_types[ SchedulingType = <entity>-SchedulingType ] ). "#EC CI_STDSEQ
+        APPEND VALUE #( %tky = <entity>-%tky ) TO failed-supplierdlvdays.
+        APPEND VALUE #( %tky                     = <entity>-%tky
+                        %msg                     = new_message( id       = lhc_zdos_i_supdlvdays=>custom_message_class
+                                                                number   = '019'
+                                                                severity = if_abap_behv_message=>severity-error
+                                                                v1       = <entity>-SchedulingType )
+                        %element-SchedulingType  = if_abap_behv=>mk-on
+                        %state_area              = state_area_sched_type
+                        %path-supplierdlvdaysall = CORRESPONDING #( <entity> ) )
+               TO reported-supplierdlvdays.
+        CONTINUE.
+      ENDIF.
     ENDLOOP.
   ENDMETHOD.
 ENDCLASS.
