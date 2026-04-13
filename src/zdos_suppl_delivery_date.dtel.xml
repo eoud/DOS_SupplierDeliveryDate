@@ -18,6 +18,28 @@
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
+   <I18N_LANGS>
+    <LANGU>A</LANGU>
+    <LANGU>T</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>A</DDLANGUAGE>
+     <DDTEXT>Supplier Delivery Date</DDTEXT>
+     <REPTEXT>Supplier Delivery Date</REPTEXT>
+     <SCRTEXT_S>SupDlvDate</SCRTEXT_S>
+     <SCRTEXT_M>Suppl. Dlv. Date</SCRTEXT_M>
+     <SCRTEXT_L>Supplier Delivery Date</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>T</DDLANGUAGE>
+     <DDTEXT>Supplier Delivery Date</DDTEXT>
+     <REPTEXT>Supplier Delivery Date</REPTEXT>
+     <SCRTEXT_S>SupDlvDate</SCRTEXT_S>
+     <SCRTEXT_M>Suppl. Dlv. Date</SCRTEXT_M>
+     <SCRTEXT_L>Supplier Delivery Date</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

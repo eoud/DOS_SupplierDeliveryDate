@@ -19,9 +19,19 @@
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
+    <LANGU>A</LANGU>
     <LANGU>N</LANGU>
+    <LANGU>T</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>A</DDLANGUAGE>
+     <DDTEXT>Indicator for Saturday</DDTEXT>
+     <REPTEXT>Saturday</REPTEXT>
+     <SCRTEXT_S>Saturday</SCRTEXT_S>
+     <SCRTEXT_M>Saturday</SCRTEXT_M>
+     <SCRTEXT_L>Saturday</SCRTEXT_L>
+    </item>
     <item>
      <DDLANGUAGE>N</DDLANGUAGE>
      <DDTEXT>Zaterdag</DDTEXT>
@@ -29,6 +39,14 @@
      <SCRTEXT_S>Zaterdag</SCRTEXT_S>
      <SCRTEXT_M>Zaterdag</SCRTEXT_M>
      <SCRTEXT_L>Zaterdag</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>T</DDLANGUAGE>
+     <DDTEXT>Indicator for Saturday</DDTEXT>
+     <REPTEXT>Saturday</REPTEXT>
+     <SCRTEXT_S>Saturday</SCRTEXT_S>
+     <SCRTEXT_M>Saturday</SCRTEXT_M>
+     <SCRTEXT_L>Saturday</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

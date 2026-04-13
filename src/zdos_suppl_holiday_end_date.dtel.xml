@@ -19,9 +19,19 @@
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
+    <LANGU>A</LANGU>
     <LANGU>N</LANGU>
+    <LANGU>T</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>A</DDLANGUAGE>
+     <DDTEXT>Holiday End Date</DDTEXT>
+     <REPTEXT>Holiday End Date</REPTEXT>
+     <SCRTEXT_S>Hol. End</SCRTEXT_S>
+     <SCRTEXT_M>Holiday End Date</SCRTEXT_M>
+     <SCRTEXT_L>Holiday End Date</SCRTEXT_L>
+    </item>
     <item>
      <DDLANGUAGE>N</DDLANGUAGE>
      <DDTEXT>Einddatum vakantie</DDTEXT>
@@ -29,6 +39,14 @@
      <SCRTEXT_S>Einde vak.</SCRTEXT_S>
      <SCRTEXT_M>Einddatum vakantie</SCRTEXT_M>
      <SCRTEXT_L>Einddatum vakantie</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>T</DDLANGUAGE>
+     <DDTEXT>Holiday End Date</DDTEXT>
+     <REPTEXT>Holiday End Date</REPTEXT>
+     <SCRTEXT_S>Hol. End</SCRTEXT_S>
+     <SCRTEXT_M>Holiday End Date</SCRTEXT_M>
+     <SCRTEXT_L>Holiday End Date</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

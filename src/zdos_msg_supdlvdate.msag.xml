@@ -129,6 +129,224 @@
      <TEXT>Scheduling Type &amp;1 does not exist, or is not allowed</TEXT>
     </T100>
    </T100>
+   <I18N_LANGS>
+    <LANGU>A</LANGU>
+    <LANGU>T</LANGU>
+   </I18N_LANGS>
+   <T100T>
+    <T100T>
+     <SPRSL>A</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <STEXT>Messages for Supplier Delivery Date</STEXT>
+    </T100T>
+    <T100T>
+     <SPRSL>T</SPRSL>
+     <ARBGB>ZDOS_MSG_SUPDLVDATE</ARBGB>
+     <STEXT>Messages for Supplier Delivery Date</STEXT>
+    </T100T>
+   </T100T>
+   <T100_TEXTS>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>&amp;1&amp;2&amp;3&amp;4</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>&amp;1 &amp;2 does not exist. Please check your entry.</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Please check application &apos;Maintain vendor holiday calendar&apos;.</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Holiday start date may not be later than holiday end date.</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Product and ProductGroup may not be filled in at the same time.</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Supplier</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Plant</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Product</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>ProductGroup</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>The Material &amp;1 does not exist in Plant &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Plant must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>Plant &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>Material must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>Material &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Supplier must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>015</MSGNR>
+     <TEXT>Supplier &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>016</MSGNR>
+     <TEXT>Material Group &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>017</MSGNR>
+     <TEXT>At least one day must be marked as delivery day</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>018</MSGNR>
+     <TEXT>Scheduling Type must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>A</SPRSL>
+     <MSGNR>019</MSGNR>
+     <TEXT>Scheduling Type &amp;1 does not exist, or is not allowed</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>000</MSGNR>
+     <TEXT>&amp;1&amp;2&amp;3&amp;4</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>001</MSGNR>
+     <TEXT>&amp;1 &amp;2 does not exist. Please check your entry.</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>002</MSGNR>
+     <TEXT>Please check application &apos;Maintain vendor holiday calendar&apos;.</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>003</MSGNR>
+     <TEXT>Holiday start date may not be later than holiday end date.</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>004</MSGNR>
+     <TEXT>Product and ProductGroup may not be filled in at the same time.</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>005</MSGNR>
+     <TEXT>Supplier</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>006</MSGNR>
+     <TEXT>Plant</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>007</MSGNR>
+     <TEXT>Product</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>008</MSGNR>
+     <TEXT>ProductGroup</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>009</MSGNR>
+     <TEXT>The Material &amp;1 does not exist in Plant &amp;2</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>010</MSGNR>
+     <TEXT>Plant must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>011</MSGNR>
+     <TEXT>Plant &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>012</MSGNR>
+     <TEXT>Material must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>013</MSGNR>
+     <TEXT>Material &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>014</MSGNR>
+     <TEXT>Supplier must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>015</MSGNR>
+     <TEXT>Supplier &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>016</MSGNR>
+     <TEXT>Material Group &amp;1 does not exist</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>017</MSGNR>
+     <TEXT>At least one day must be marked as delivery day</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>018</MSGNR>
+     <TEXT>Scheduling Type must be provided</TEXT>
+    </item>
+    <item>
+     <SPRSL>T</SPRSL>
+     <MSGNR>019</MSGNR>
+     <TEXT>Scheduling Type &amp;1 does not exist, or is not allowed</TEXT>
+    </item>
+   </T100_TEXTS>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -24,6 +24,8 @@
     "tableSettings": [
       {
         "entitySet": "SupplierDlvDays",
+        "selectionMode": "auto",
+        "selectAll": true,
         "rowCountMode": "auto"
       }
     ]

@@ -11,6 +11,16 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>A</LANGU>
+     <DESCRIPT>Supplier Delivery Date</DESCRIPT>
+    </SEOCLASSTX>
+    <SEOCLASSTX>
+     <LANGU>T</LANGU>
+     <DESCRIPT>Supplier Delivery Date</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
   </asx:values>
  </asx:abap>
 </abapGit>

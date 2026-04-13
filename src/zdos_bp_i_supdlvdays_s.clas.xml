@@ -13,6 +13,16 @@
     <UNICODE>X</UNICODE>
     <CLSDEFINT>ZDOS_I_SUPDLVDAYS_S</CLSDEFINT>
    </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>A</LANGU>
+     <DESCRIPT>Behavior Implementation for ZDOS_I_SupDlvDays</DESCRIPT>
+    </SEOCLASSTX>
+    <SEOCLASSTX>
+     <LANGU>T</LANGU>
+     <DESCRIPT>Behavior Implementation for ZDOS_I_SupDlvDays</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
   </asx:values>
  </asx:abap>
 </abapGit>
